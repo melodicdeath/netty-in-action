@@ -7,12 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="chapter-02" />
+        <module name="code-cprotobuf" />
+        <module name="ssl" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="chapter-01" target="1.5" />
       <module name="chapter-02" target="1.5" />
+      <module name="code-cprotobuf" target="1.7" />
       <module name="netty-in-action" target="1.5" />
+      <module name="ssl" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

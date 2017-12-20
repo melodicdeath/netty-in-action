@@ -1,0 +1,8 @@
+option java_package = "org.melodicdeath.message";
+option java_outer_classname = "SubscribeRespProto";
+
+message SubscribeResp {
+    required int32 sub_req_id = 1;
+    required int32 respCode = 2;
+    required string desc = 3;
+}

@@ -1,20 +1,19 @@
-package org.melodicdeath.client;
+package client;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
 /**
- * Created by zt.melody on 2017/8/23.
+ * Created by zt.melody on 2017/12/20.
  */
 
-public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
+public class EchoClientHandler extends SimpleChannelInboundHandler<String> {
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, String msg) throws Exception {
         System.out.println(
-                "Client received: " + byteBuf.toString(CharsetUtil.UTF_8));
+                "Client received: " + msg);
     }
 
     @Override

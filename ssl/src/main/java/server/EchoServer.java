@@ -1,8 +1,10 @@
-package org.melodicdeath.server;
+package server;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.*;
-import io.netty.channel.nio.NioEventLoop;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.oio.OioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -21,22 +23,19 @@ import java.net.InetSocketAddress;
 public class EchoServer {
     public static void main(String[] args) throws InterruptedException {
         final EchoServerHandler echoServerHandler = new EchoServerHandler();
-//        EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
-        EventLoopGroup eventLoopGroup = new OioEventLoopGroup();
+        EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(eventLoopGroup)
-                    .channel(OioServerSocketChannel.class)
-//                    .option(ChannelOption.SO_KEEPALIVE, true)
+                    .channel(NioServerSocketChannel.class)
                     .localAddress(new InetSocketAddress(9000))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-//                            socketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(1024 * 1024, 0, 4, 0, 4));
-//                            socketChannel.pipeline().addLast(new StringDecoder());
-//
-//                            socketChannel.pipeline().addLast("frameEncoder", new LengthFieldPrepender(4));
-//                            socketChannel.pipeline().addLast("StringEncoder", new StringEncoder());
 
+                            socketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(1024 * 1024, 0, 4, 0, 4));
+                            socketChannel.pipeline().addLast(new StringDecoder());
+                            socketChannel.pipeline().addLast("frameEncoder", new LengthFieldPrepender(4));
+                            socketChannel.pipeline().addLast("StringEncoder", new StringEncoder());
                             socketChannel.pipeline().addLast(echoServerHandler);
                         }
                     });
