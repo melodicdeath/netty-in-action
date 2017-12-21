@@ -31,6 +31,8 @@ import java.io.InputStreamReader;
 /**
  * Simple SSL chat client modified from {@link }.
  */
+
+//-Djavax.net.debug=ssl,handshake
 public final class SecureChatClient {
 
     static final String HOST = System.getProperty("host", "127.0.0.1");

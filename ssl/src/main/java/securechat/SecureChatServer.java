@@ -28,6 +28,8 @@ import io.netty.handler.ssl.util.SelfSignedCertificate;
 /**
  * Simple SSL chat server modified from {@link }.
  */
+
+//-Djavax.net.debug=ssl,handshake
 public final class SecureChatServer {
 
     static final int PORT = Integer.parseInt(System.getProperty("port", "8992"));
